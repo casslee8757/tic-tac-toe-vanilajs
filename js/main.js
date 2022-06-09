@@ -1,6 +1,7 @@
 const grids = document.querySelectorAll('.grid-box')
 const player1Scoreboard = document.querySelector('.player1__score')
 const player2Scoreboard = document.querySelector('.player2__score')
+const scoreBoard = document.querySelector('.player__switch')
 
 
 let player1 = 'O'
@@ -45,22 +46,20 @@ const playerGrid = (grid, index) => {
 
     }else{
         playerTurn = 0;
+        grid.style.color = '#8f4ab8'
         board[index] = player2
         grid.append(player2)
         cellBoxes++
     }
-    
     checkWinning()
 }
 
 const checkWinning = () => {
     for(let i = 0; i < winningPossibilities.length; i++){
 
-        const winning = winningPossibilities[i]
-
-        let a = winning[0]
-        let b = winning[1]
-        let c = winning[2]
+        let a = winningPossibilities[i][0]
+        let b = winningPossibilities[i][1]
+        let c = winningPossibilities[i][2]
 
         let contentA = board[a]
         let contentB = board[b]
@@ -72,19 +71,17 @@ const checkWinning = () => {
             if(playerTurn === 1){
                 playerScore1++;
                 player1Scoreboard.innerText = playerScore1
-                console.log('player 1 wins');
+                scoreBoard.innerText = 'Player 1 wins'
 
             }else{
                 playerScore2++;
                 player2Scoreboard.innerText = playerScore2
                 console.log('player 2 wins');
+                scoreBoard.innerText = 'Player 2 wins'
             }
         }else if(cellBoxes === 9){
-            console.log('draw');
-        }
-
-        
-        
+            scoreBoard.innerText = 'Draw'
+        }    
     }
 }
 
