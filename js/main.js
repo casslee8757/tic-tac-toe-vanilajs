@@ -31,13 +31,15 @@ const winningPossibilities = [
 //empty board array 
 let board = [ '', '', '', '', '', '', '', '', ''];
 
+const gameStart = () => {
 
-grids.forEach((grid, index) => {
-    grid.addEventListener('click', () => {
-        playerGrid(grid, index)
-        // console.log('clicked', grid, index);
-    }, {once : true})
-})
+    grids.forEach((grid, index) => {
+        grid.addEventListener('click', () => {
+            playerGrid(grid, index)
+            // console.log('clicked', grid, index);
+        }, {once : true})
+    })
+}
 
 const playerGrid = (grid, index) => {
     if(playerTurn === 0){
@@ -93,6 +95,12 @@ const pointerDisable = () => {
     })
 }
 
+const pointerAble = () => {
+    grids.forEach(grid => {
+        grid.style.pointerEvents = 'auto'
+    })
+}
+
 resetGameBtn.addEventListener('click', () => {
     board = [ '', '', '', '', '', '', '', '', ''];
     grids.forEach( grid => {
@@ -100,6 +108,8 @@ resetGameBtn.addEventListener('click', () => {
     })
     playerTurn = 0;
     cellBoxes = 0;
-    playerGrid()
+    pointerAble()
+    gameStart()
 })
 
+gameStart()
