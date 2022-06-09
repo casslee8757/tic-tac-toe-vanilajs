@@ -103,7 +103,6 @@ body {
   /*content of grid box*/
   .grid-box {
     border: 1px solid #883997;
-    padding: auto;
     display: block;
     width: 120px;
     height: 120px;
