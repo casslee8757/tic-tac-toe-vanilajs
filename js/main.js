@@ -1,10 +1,14 @@
 const grids = document.querySelectorAll('.grid-box')
+const player1Scoreboard = document.querySelector('.player1__score')
+const player2Scoreboard = document.querySelector('.player2__score')
 
 
-let currentPlayer = 'O'
 let player1 = 'O'
 let player2 = 'X'
 let playerTurn = 0;
+let cellBoxes = 0;
+let playerScore1 = 0;
+let playerScore2 = 0;
 
 //all winning posibilities 
 const winningPossibilities = [
@@ -37,19 +41,21 @@ const playerGrid = (grid, index) => {
         playerTurn = 1;
         board[index] = player1
         grid.append(player1)
-        console.log(board);
+        cellBoxes++
 
     }else{
         playerTurn = 0;
         board[index] = player2
         grid.append(player2)
-        console.log(board);
+        cellBoxes++
     }
     
+    checkWinning()
 }
 
 const checkWinning = () => {
     for(let i = 0; i < winningPossibilities.length; i++){
+
         const winning = winningPossibilities[i]
 
         let a = winning[0]
@@ -61,7 +67,29 @@ const checkWinning = () => {
         let contentC = board[c]
 
         if(contentA === contentB && contentB === contentC && contentA !== ""){
-            grid.style.pointerEvents = 'none'
+            pointerDisable()
+            
+            if(playerTurn === 1){
+                playerScore1++;
+                player1Scoreboard.innerText = playerScore1
+                console.log('player 1 wins');
+
+            }else{
+                playerScore2++;
+                player2Scoreboard.innerText = playerScore2
+                console.log('player 2 wins');
+            }
+        }else if(cellBoxes === 9){
+            console.log('draw');
         }
+
+        
+        
     }
+}
+
+const pointerDisable = () => {
+    grids.forEach( grid => {
+       grid.style.pointerEvents = 'none'
+    })
 }

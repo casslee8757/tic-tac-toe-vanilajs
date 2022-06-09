@@ -110,9 +110,9 @@ body {
     font-family: "Margarine", cursive;
     color: #4a148c;
     line-height: 120px;
+    cursor: pointer;
   }
   
   .grid-box:hover {
     background-color: #dcbde2;
-    cursor: pointer;
   }
