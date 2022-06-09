@@ -42,7 +42,7 @@ body {
 
 .player__switch {
     font-size: 13px;
-    line-height: 18px;
+    line-height: 10px;
     animation: fadein 2s;
     margin: 0;
 }
