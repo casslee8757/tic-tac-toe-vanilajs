@@ -70,7 +70,7 @@ const checkWinning = () => {
         let contentC = board[c]
 
         if(contentA === contentB && contentB === contentC && contentA !== ""){
-            pointerDisable()
+            cursorControl()
             
             if(playerTurn === 1){
                 playerScore1++;
@@ -89,15 +89,15 @@ const checkWinning = () => {
     }
 }
 
-const pointerDisable = () => {
+const cursorControl = () => {
     grids.forEach( grid => {
-       grid.style.pointerEvents = 'none'
-    })
-}
+        if(cellBoxes === 0){
+            grid.style.pointerEvents = 'auto'
 
-const pointerAble = () => {
-    grids.forEach(grid => {
-        grid.style.pointerEvents = 'auto'
+        }else{
+            grid.style.pointerEvents = 'none'
+
+        }
     })
 }
 
@@ -108,7 +108,8 @@ resetGameBtn.addEventListener('click', () => {
     })
     playerTurn = 0;
     cellBoxes = 0;
-    pointerAble()
+    // scoreBoard.innerText = 'TURN : Player 1'
+    cursorControl()
     gameStart()
 })
 
